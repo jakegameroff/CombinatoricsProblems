@@ -1,0 +1,21 @@
+%! TeX root: ../main.tex
+\noindent \textbf{Q14.} Prove Tutte's matching theorem: A graph \( G \) has a perfect matching if and only if \[ c_{o} (G - X) \leq |X| \] for every subset \( X \subseteq V(G) \).
+\begin{proof}
+Let's start with the ``only if" direction. Let \( M \) be a perfect matching in \( G \), and suppose there is a set \( X \subseteq V(G) \) with \( c_{o}(G - X) > |X|  \). Suppose \( C_1, C_2, \hdots , C_{k}  \) are the odd components of \( G - X \). Since \( M \) is perfect and each component is odd, for each \( j \in [k] \) there is a vertex \( v_{j} \in V(C_{j}) \) which is matched with a vertex \(x_{j} \notin C_{j}  \); hence \( x_{j} \in X \). But then two vertices \( v_{i_1} , v_{i_2}  \) must receive the same match in \( X \), a contradiction.
+
+The ``if" direction is much harder. We proceed by induction on \( |V(G)| \). The theorem is trivial if \( |V(G)| \leq 2 \), so fix \( |V(G)| \geq 3 \) and suppose \( c_{o} (G - X) \leq |X| \) for every \( X \subseteq V(G) \). We prove a sequence of claims as follows:
+\begin{itemize}[nolistsep]
+	\item \textbf{Claim 1:}	\emph{\( |V(G)| \) is even.} It suffices to check that \( G \) has only even components. Set \( X = \emptyset  \). Then \( c_{o} (G - X) = c_{o} (G) \leq |\emptyset | = 0 \), so the claim holds.
+	\item \textbf{Claim 2:} \emph{\( c_{o} (G - X) + |X| \) is always even.} If \( |X| \) is odd, then \( |V(G)| - |X| \) is too by claim 1, so \( G - X \) must have an odd number of components. The exact same reasoning shows that if \( |X| \) is even then so is \( c_{o} (G - X) \). Then, the claim holds since \( a + b \) is even if and only if \( a \) and \( b \) have the same parity.
+	\item \textbf{Claim 3:} \emph{There is a subset \( X \subseteq V(G) \) such that \( c_{o} (G - X) = |X| \).} We will call such sets \( X \) \emph{critical}. If \( X = \emptyset  \) then \( c_{o} (G - X) = 0  \) as shown above, so \( \emptyset  \) is critical.
+	\item \textbf{Claim 4:} \emph{Let \( Z \subseteq V(G) \) be critical with \( |Z| \) maximum. Then \( G - Z \) has no even components.} Suppose by contradiction that \( C \) is an even component of \( G - Z \), and fix \( x \in V(C) \). Then \( Z' = Z \cup \{ x \}  \) is critical so that \( Z \) is not maximal: \( c_{o} (G - Z') = c_{o} (G - Z) + 1 = |Z| + 1 = |Z'|  \), since deleting \( x \) from \( C \) will either give one odd component (if \( C - x \) is connected) or one even and one odd component.
+	\item \textbf{Claim 5:} \emph{For each \( j \in [k] \), fix \( v_{j} \in V(C_{j}) \). Then \(C_{j}^{\ast} = C_{j} - v_{j}  \) has a perfect matching.} Suppose not. Then the IH implies that there is a set \( X \subseteq V(C^{\ast} _{j}) \) with \( c_{o} (C^{\ast} _{j} - X) > |X| \). But then \( Z' = Z \cup X \cup \{ v_{j}  \}  \) is critical:
+		\begin{align*}
+			c_{o} (G - Z') &= c_{o} (G - Z) - 1 + c_{o} (C^{\ast} _{j}  - X  ) \\
+				       &> c_{o}(G - Z)  - 1 + |X| \\
+				       &= |Z| - 1 + |X| = |Z'| - 2,
+		\end{align*}
+		so \( c_{o} (G - Z') \geq |Z'| - 1 \), but \( c_{o} (G - Z') \) and \( |Z'| \) have the same parity by claim 2, so we must have \( c_{o} (G - Z') \geq |Z'| \). By hypothesis, \( c_{o} (G - Z') \leq |Z'| \), so \( Z' \) is critical.
+	\item \textbf{Claim 6:} \emph{\( G \) has a perfect matching.} Claim 5 shows that \( C^{\ast} _1, C^{\ast} _2, \hdots , C^{\ast} _{k}  \) have perfect matchings; so now we must match the points in \( Z \) with points in \(Y = \{ v_1, v_2, \hdots , v_{k}  \}  \). If there is no such (perfect) matching between \( Z \) and \( Y \), then Hall's theorem implies that there is a subset \( S \subseteq Y \) with \( |N(S)| < |S| \) (note that the induced graph is bipartite, deleting any edges \( z_{i} z_{j}  \)). Set \( X = N(S) \) and then note that \( c_{o} (G - X) \geq |S| > |N(S)| = |X| \) is a contradiction and the proof is done. \qedhere
+\end{itemize}
+\end{proof}
