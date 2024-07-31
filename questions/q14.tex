@@ -19,3 +19,18 @@ The ``if" direction is much harder. We proceed by induction on \( |V(G)| \). The
 	\item \textbf{Claim 6:} \emph{\( G \) has a perfect matching.} Claim 5 shows that \( C^{\ast} _1, C^{\ast} _2, \hdots , C^{\ast} _{k}  \) have perfect matchings; so now we must match the points in \( Z \) with points in \(Y = \{ v_1, v_2, \hdots , v_{k}  \}  \). If there is no such (perfect) matching between \( Z \) and \( Y \), then Hall's theorem implies that there is a subset \( S \subseteq Y \) with \( |N(S)| < |S| \) (note that the induced graph is bipartite, deleting any edges \( z_{i} z_{j}  \)). Set \( X = N(S) \) and then note that \( c_{o} (G - X) \geq |S| > |N(S)| = |X| \) is a contradiction and the proof is done. \qedhere
 \end{itemize}
 \end{proof}
+\noindent \textbf{Q15.} Let \( G \) be a \( d \)-regular bipartite graph. Show that \( G \) has a perfect matching.
+\begin{proof}
+Suppose not. Let \( (A,B) \) be a bipartition of \( G \). Then Hall's theorem says that there is a set \( S \subseteq A \) with \( |N(S)| < |S| \). Note that there are \( d \cdot |S| \) edges leaving \( S \), and there are \( d \cdot |N(S) \) edges leaving \( N(S) \). But every edge leaving \( S \) has another end in \( N(S) \), so \( d \cdot |N(S)| < d \cdot |S| \) is a contradiction.
+\end{proof}
+\noindent \textbf{Q16.} Given \( n \in \mathbb{N}  \), determine the minimum \( \delta = \delta (n) \) such that every graph \( G \) on \( 2n \) vertices with minimum degree \( \delta  \) has a perfect matching.
+\begin{proof}
+First, we show that \( \delta = n \) suffices to guarantee a perfect matching in \( G \). We may assume that \( G \) is \( \delta  \)-regular, otherwise just delete any extra edges.
+
+Given any graph \( G \), let \( (A_0,B_0) \) be any partition of \( V(G) \) such that \( |A_0| = |B_0| \). For any partition \( (A,B) \), let \( e(A) \) denote the number of edges with both ends in \( A \), and define \( e(B) \) analagously. We give an algorithm to obtain a bipartite subgraph of \( G \) which will contain a perfect matching.
+
+Pick any \( a \in A_0 \) and \( b \in B_0 \). Define \( A_1 = A_0 \setminus \{ a \} \cup \{ b \}  \) and \( B_1 = B_0 \setminus \{ b \} \cup \{ a \}  \). If \( e(A_0) + e(B_0) > e(A_1) + e(B_1) \), then repeat the algorithm again with the partition \( (A_1, B_1) \), otherwise try again with any other pair of vertices. Since \( G \) is finite, this process terminates with a partition \( (A,B) \) of \( V(G) \) which minimises the number of edges with both ends in \( A \) or both ends in \( B \). Then, it follows that each \( a \in A \) has at least \( \lceil n / 2 \rceil \) neighbours in \( B \) and each \( b \in B \) has at least \( \lceil n / 2 \rceil \) neighbours in \( A \). Let \( H \) be obtained from \( G \) by deleting all edges with both ends in either \( A \) or \( B \). Then \( H \) is \( \lceil n/2 \rceil \)-regular and bipartite, and so by Q15 it has a perfect matching. Thus, \( G \) does too.
+
+We complete the proof by showing that \( \delta = n - 1 \) does not suffice to guarantee a perfect matching. Consider the complete bipartite graph \( K_{n-1, n+1}  \). Deleting the smaller partite set of \( n - 1 \) vertices results in \( n + 1 \) isolated vertices, which violates Tutte's condition. Hence, \( K_{n-1, n+1}  \) has no perfect matching. Note that \( \delta (K_{n-1, n+2}) = n - 1 \).
+\end{proof}
+
