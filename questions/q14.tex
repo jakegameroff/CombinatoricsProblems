@@ -33,4 +33,17 @@ Pick any \( a \in A_0 \) and \( b \in B_0 \). Define \( A_1 = A_0 \setminus \{ a
 
 We complete the proof by showing that \( \delta = n - 1 \) does not suffice to guarantee a perfect matching. Consider the complete bipartite graph \( K_{n-1, n+1}  \). Deleting the smaller partite set of \( n - 1 \) vertices results in \( n + 1 \) isolated vertices, which violates Tutte's condition. Hence, \( K_{n-1, n+1}  \) has no perfect matching. Note that \( \delta (K_{n-1, n+2}) = n - 1 \).
 \end{proof}
+\noindent \textbf{Q17.} Show that for every bridgeless cubic graph \( G \) and every \( e \in E(G) \) there is a perfect matching in \( G \) containing \( e \).
+\begin{proof}
+Fix any edge \( uv \in E(G) \) and let \( e,f \in E(G) \) be the other two edges incident to \( v \). Let \( G' \) be obtained from \( G \) by deleting the edges \( e,f \). To show that \( G \) has a perfect matching containing \( uv \), it suffices to prove that \( G' \) has a perfect matching. Hence, we use Tutte's theorem to show that \( c_{o} (G' - X) \leq |X| \) for every subset \( X \subseteq V(G') \).
+
+Suppose for a contradiction that there is a set \( X \subseteq V(G) \) such that \( c_{o} (G' - X) > |X| \). Note that \( c_{o} (G' - X) \) and \( |X| \) have the same parity since \( |V(G')| \) is even, hence \( c_{o} (G' - X) \geq |X| + 2 \). Let \( C_1, C_2, \hdots , C_{n}  \) denote the odd components of \( G' - X \). For each \( j \in [n] \), let \( \ell_{j}  \) be the number of edges in \( G \) leaving \( C_{j}  \). Then since \( G \) is cubic, \[ \sum_{v \in V(C_{j})}^{} \deg_{G} v = 2 |E(C_{j})| + \ell_{j} = 3 |V(C_{j})|. \] Observe that LHS is even (since \( |V(C_{j})| \) is odd), hence \( \ell_{j} \) must be odd. Furthermore, \( \ell_{j} \geq 2 \) since \( G \) is bridgeless, and since \( \ell_{j}  \) is odd we have \( \ell_{j} \geq 3 \). Let \( r_{j} \) be the number of edges in \( G \) with one end in \( C_{j}  \) and the other in another odd component \( C_{i}  \), and let \( q_{j} = \ell_{j} - r_{j}  \) be the remaining edges. Then \( \sum_{j=1}^{n} r_{j} \leq 4 \) since we only deleted two edges, and since \( G \) is 3-regular, \( \sum_{j=1}^{n} q_{j} \leq 3|X|  \). 
+
+Then, putting everything together,
+\begin{align*}
+	c_{o} (G' - X) &= n \leq \frac{1}{3} \sum_{j=1}^{n} \ell_{j} = \frac{1}{3} \sum_{j=1}^{n} (q_{j} + r_{j}) \\
+	 &\leq \frac{1}{3}\sum_{j=1}^{n} q_{j} + 4/3 \leq |X| + 4/3
+\end{align*}
+But recall that \( c_{o} (G' - X) = n \geq |X| + 2\), so we may rearrange the above to obtain \( |X| + 2 - 2/3 \geq n \) and hence \( n - 2/3 \geq n \) is a contradiction. Therefore, \( G' \) has a perfect matching. Since \( v \) has degree one in \( G' \), it follows that \( G \) has a perfect matching containing \( uv \). 
+\end{proof}
 
