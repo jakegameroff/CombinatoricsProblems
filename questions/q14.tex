@@ -46,4 +46,18 @@ Then, putting everything together,
 \end{align*}
 But recall that \( c_{o} (G' - X) = n \geq |X| + 2\), so we may rearrange the above to obtain \( |X| + 2 - 2/3 \geq n \) and hence \( n - 2/3 \geq n \) is a contradiction. Therefore, \( G' \) has a perfect matching. Since \( v \) has degree one in \( G' \), it follows that \( G \) has a perfect matching containing \( uv \). 
 \end{proof}
+\noindent \textbf{Q18.} Prove the Tutte-Burge formula: For a graph \( G \), its \emph{deficiency} \( \operatorname{def} (G) \) is the minimal number of vertices avoided by a matching. Clearly \( \operatorname{def} (G) = |V(G)| - 2 \nu (G) \). Show that \[ \operatorname{def} (G) = \max_{X \subseteq V(G)} (c_{o} (G - X) - |X|). \tag{$\ast$} \] 
+\begin{proof}
+First note that \((\ast)\) holds if \( G \) has a perfect matching: \( c_{o} (G - X) - |X| \leq 0 \) always by Tutte's theorem, and the inequality is tight taking \( X = \emptyset  \). Therefore, \[ \operatorname{def} (G) = |V(G)| - 2 \nu (G) = 0 =  \max_{X \subseteq V(G)} (c_{o} (G - X) - |X|).  \] 
 
+Let \( X \subseteq V(G) \) be such that \( c_{o} (G - X) - |X| = k \) is maximum. Let \( M \) be any maximal matching in \( G \) and let \( C_1, C_2, \hdots , C_{n}  \) be the odd components of \( G - X \). By deleting edges, we may assume without loss of generality that \( G \) has no edge with one end in \( \medcup_{j=1} ^{k} V(C_{j}) \) and another in \( X \), since at most \( n - k \) edges in \( M \) can have an end in \( X \). Then each component \( C_1, C_2, \hdots , C_{k}  \) contains an unmatched vertex, since \( |V(C_{j})| \) is odd for every \( j \in [k] \). So \( k \) vertices can be avoided by a matching, hence \[\operatorname{def} (G) = |V(G)| - 2\nu (G) \leq k = \max _{X \subseteq V(G)} (c_{o} (G - X) - |X|). \] 
+
+The reverse inequality is much harder. Let's set \( k = |V(G)| - 2\nu (G) \). We construct an auxiliary graph \( H \) as follows. Let \( Y = \{ y_1, y_2, \hdots , y_{k}  \}  \) be a set of \( k \) new vertices. Let \( H = G \cup Y \) be obtained from \( G \) by adding each vertex in \( Y \), with each \( y_{j} \in Y \) adjacent to every other vertex in \( H \) (including those in \( Y - v_{j}  \)). 
+
+Then \( H \) has a perfect matching: take any maximal matching \( M \) in \( G \) and suppose \( v_1, v_2, \hdots , v_{k}  \) are unmatched; then \( M \cup \{ y_{j}v_{j} : j \in [k] \}  \) is a perfect matching in \( H \). So \( H \) satisfies Tutte's condition: we have \( c_{o} (H - X) \leq |X| \) for every \( X \subseteq V(H) \). So fix \( X \subseteq V(G) \) and observe that
+\begin{align*}
+	c_{o} (G - X) &= c_{o} (H - (X \cup Y)) \leq |X \cup Y| \\ 
+		      &= |X| + |Y| = |X| + |V(G)| - 2 \nu (G),
+\end{align*}
+consequently \( c_{o} (G-X) - |X| \leq |V(G)| - 2 \nu (G) = \operatorname{def} (G) \). Since \( X \) was arbitrary, the proof is complete.
+\end{proof}
