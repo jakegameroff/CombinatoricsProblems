@@ -1,7 +1,7 @@
 %! TeX root: ../main.tex
 \noindent \textbf{Q1.} Let $G$ be $k$-connected and suppose $H$ is a graph obtained from $G$ by appending a new vertex $v$ adjacent to at least $k$ vertices in $G$. Show that $H$ is $k$-connected.
 \begin{proof}
-Consider a subset $X \subseteq V(H)$ with $|X| < k$. If $v \notin X$, then $H \setminus X$ is connected since $G$ is $k$-connected. Otherwise, $v \in X$; by the $k$-connectivity of $G$ and since $v$ has a neighbour not in $X$ (as $\deg v \geq k$), it follows that $F = H \setminus (X \setminus v)$ is connected. Then $F \setminus v = G \setminus (X \setminus v) = H \setminus X $ is connected by the choice of $v$.
+Consider a subset $X \subseteq V(H)$ of less than \( k \) vertices. If $v \notin X$, then $H \setminus X$ is connected since $G$ is $k$-connected. Otherwise, $v \in X$, so by the $k$-connectivity of $G$ and since $v$ has a neighbour not in $X$ (as $\deg v \geq k$), it follows that $F = H \setminus (X \setminus v)$ is connected. Then $F \setminus v = G \setminus (X \setminus v) = H \setminus X $ is connected by the choice of $v$.
 \end{proof}
 \noindent \textbf{Q2.} Let \( |V(G)| \geq 3 \). Show that $G$ is 2-connected if and only if for all vertices $x,y,z$ there is a path between $x$ and $y$ containing $z$.
 \begin{proof}
