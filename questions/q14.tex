@@ -61,3 +61,23 @@ Then \( H \) has a perfect matching: take any maximal matching \( M \) in \( G \
 \end{align*}
 consequently \( c_{o} (G-X) - |X| \leq |V(G)| - 2 \nu (G) = \operatorname{def} (G) \). Since \( X \) was arbitrary, the proof is complete.
 \end{proof}
+\noindent \textbf{Q19.} Use LP duality to prove K\"onig's theorem.
+\begin{proof}
+Fix a bipartite graph \( G = (V, E) \). First note that the following LP computes \( \nu (G) \):
+\begin{align*}
+    \text{max} \ \ \ & z(x) = \sum_{e \in E}^{} x_{e}  \\
+    \text{subject to} \ \ \ & \sum_{e \in \delta (v) }^{} x_{e} \leq 1, \ \forall v \in V \\
+			    & x_{e} \geq 0, \ \forall e \in E.
+\end{align*}
+Since \( G \) is bipartite, its incidence matrix \( A \) is totally unimodular. Hence the polyhedron \( P = \{ x \geq 0 : Ax \leq 1 \}  \) has integral corners. By construction, \( x \in P \) if and only if it is feasible, so any optimum \( x^{\ast}  \) is integral.
+
+Now fix a maximal matching \( M \) and define \( x_{e} = 1 \) if \( e \in M \) and \( x_{e} = 0 \) otherwise. Then \( x \) is a feasible point and \( z(x) = |M| = \nu (G) \). On the other hand, if \( x^{\ast}  \) is an optimum of the LP, put \( M = \{ e \in E : x^{\ast} _{e} = 1 \}  \). Then \( |M| = \sum_{e \in E}^{} x^{\ast} _{e}  \), and if \( M \) is not a matching there is a vertex \( v \in V \) incident with two edges in \( M \), violating the first constraint. So the primal has optimum value \( \nu (G) \).
+
+Consequently, LP duality implies that its dual program also has optimum value \( \nu (G) \). The dual is as follows:
+\begin{align*}
+    \text{min} \ \ \ & w(x) = \sum_{v \in V}^{} y_{v}   \\
+    \text{subject to} \ \ \ & y_{u} + y_{v} \geq 1, \ \forall uv \in E \\
+			    & y_{v} \geq 0, \ \forall v \in V.
+\end{align*}
+But the dual also computes \( \tau (G) \). If \( X \) is a minimal vertex cover of \( G \), set \( y_{v} = 1 \) if \( v \in X \) and \( y_{v} = 0 \) otherwise. Then \( y \) is a feasible point and \( w(y) = |X| \). Conversely, if \( y^{\ast}  \) is an optimum of the LP, put \( X = \{ v \in V : y^{\ast}_{v} = 1 \}  \). If \( X \) is not a vertex cover, then there is an edge \( uv \in E \) with no end in \( X \). So \( y^{\ast} _{u} = y^{\ast} _{v} = 0  \), contradicting \( y^{\ast}_{u} + y^{\ast} _{v} \geq 1  \). It follows that \( \nu (G) = \tau (G) \).
+\end{proof}
