@@ -1,0 +1,6 @@
+%! TeX root: ../main.tex
+\noindent \textbf{Q20.} Let \( G \) be a graph with minimum degree \( \delta \geq 2 \). Show that \( G \) contains a cycle of length at least \( \delta + 1 \).
+\begin{proof}
+Let \( P \) be a path in \( G \) with maximum length, and let \( u \) be an end of \( P \). By the maximality of \( P \), each neighbour of \( u \) is in \( P \), so \( P \) has length at least \( \delta \). Let \( v \) be the furthest vertex along \( P \) from \( u \) such that \( uv \in E \), and let \( P' \subseteq P \) be a sub-path of \( P \) with ends \( u,v \). Then \( P' \) has length at least \( \delta \), so \( P' \cup uv \) is a cycle of length at least \( \delta + 1 \).
+\end{proof}
+
