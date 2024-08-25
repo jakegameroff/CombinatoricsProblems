@@ -3,4 +3,27 @@
 \begin{proof}
 Let \( P \) be a path in \( G \) with maximum length, and let \( u \) be an end of \( P \). By the maximality of \( P \), each neighbour of \( u \) is in \( P \), so \( P \) has length at least \( \delta \). Let \( v \) be the furthest vertex along \( P \) from \( u \) such that \( uv \in E \), and let \( P' \subseteq P \) be a sub-path of \( P \) with ends \( u,v \). Then \( P' \) has length at least \( \delta \), so \( P' \cup uv \) is a cycle of length at least \( \delta + 1 \).
 \end{proof}
+\noindent \textbf{Q21.} Let \( G \) be a bipartite graph with maximum degree \( \Delta \). Prove that \( G \) has a matching saturating every vertex of degree \( \Delta \).
+\begin{proof}
+Let \( (A,B) \) be a bipartition of \( G \). By appending isolated vertices, we may assume \( |A| = |B| \). Let \( H \) be a bipartite \( \Delta \)-regular graph obtained from \( G \) by adding a set \( F \) of extra edges. Then Q15 implies that \( H \) has a perfect matching \( M \) and so \( M - F \) is the desired matching in \( G \).
+\end{proof}
+\noindent \textbf{Q22.} Let \( \alpha (G) \) and \( \rho (G) \) denote the independence and edge-cover numbers of \( G \) respectively. Show that if \( G = ( A \cup B, E) \) is bipartite, then \( \alpha(G) = \rho (G) \).
+\begin{proof}
+Let's use LP duality as in Q19. We'll start by writing an LP which computes \( \rho (G) \). Here it is:
+\begin{align*}
+    \text{min} \ \ \ & \sum_{e \in E}^{} x_{e}  \\
+    \text{subject to} \ \ \ & \sum_{e \in \delta (v) }^{} x_{e} \geq 1, \ \forall v \in V \\
+			    & x_{e} \geq 0, \ \forall e \in E.
+\end{align*}
+Using the same reasoning as in Q19, since \( G \) is bipartite, its incidence matrix \( A \) is totally unimodular. Then the set \( P = \{ x \geq 0 : Ax \geq 1 \}  \) of feasible solutions has integral corners and so the LP is integral.
 
+First suppose \( F \) is a minimal edge cover in \( G \). Then set \( x_{e} = 1 \) if \( e \in F \) and \( x_{e} = 0 \) otherwise. Then \( x \) is feasible by construction. On the other hand, given an optimum \( x^{\ast}  \), note first that \( x^{\ast}_{e} \in \{ 0,1 \}  \) for each \( e \in E \). Indeed, the LP is integral, and if there is an edge \( e = uv \in G \) with \( x_{e}^{\ast} \geq 2  \), it follows that \( x^{\ast}  \) is not optimal. So put \( F = \{ e \in E : x^{\ast} _{e} = 1 \}  \). Then \( \rho (G) \leq |F| = \sum_{e \in E}^{} x_{e}^{\ast}   \), and note that \( F \) is a vertex cover, otherwise there is a vertex \( v \in V \) incident to no edge in \( F \). But then \( \sum_{e \in \delta (v)}^{} x^{\ast}_{e} = 0  \) violates the LP constraints. Hence the primal computes \( \rho (G) \).
+
+Using LP duality, the dual LP must then also compute \( \rho (G) \). Here it is:
+\begin{align*}
+    \text{max} \ \ \ & \sum_{v \in V}^{} y_{v}   \\
+    \text{subject to} \ \ \ & y_{u} + y_{v} \leq 1, \ \forall uv \in E \\
+			    & y_{v} \geq 0, \ \forall v \in V.
+\end{align*}
+It remains to show that the dual LP computes \( \alpha(G) \). First, given a maximum independent set \( X \subseteq V \), put \( y_{v} = 1 \) if \( v \in X \) and \( y_{v} = 0 \) otherwise. Then \( y \) is feasible. On the other hand, given an optimum \( y^{\ast}  \), put \( X = \{ v \in V : y_{v} = 1 \}  \). Then \( \alpha (G) \geq |X| = \sum_{v \in V}^{} y_{v}  \) and \( X \) is a vertex cover, otherwise there is an edge between two vertices \( u, v \in X \). Consequently, \( y_{u} + y_{v} = 2 \) is a contradiction. Therefore, \( \rho (G) = \alpha (G) \).
+\end{proof}
