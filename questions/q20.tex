@@ -35,5 +35,5 @@ Conversely, suppose there is no set \( C \subseteq V\) as described above. We sh
 
 We first claim that in \( D' \) there are \( k \) disjoint paths \( P_1, P_2, \hdots , P_{k}  \) between \( S \) and \( C \). If not, the IH gives a set \( X \subseteq V \) such that every path between \( S \) and \( C \) intersects \( B \) and \( |B| \leq k - 1 \). But recall that every path between \( S \) and \( T \) in \( D \) intersects \( C \), so each of these paths also intersects \( B \), a contradiction. Identical reasoning implies that there are also \( k \) disjoint paths \( Q_1, Q_2, \hdots , Q_{k}  \) between \( C' \cup \{ v \}  \) and \( T \) in \( D' \).
 
-Since \( |C| = k \), the paths \( P_1, \hdots , P_{k}, Q_1, \hdots , Q_{k} \) along with the arc \( a \) form \( k \) disjoint paths between \( S \) and \( T \), as required.
+Since \( |C| = k \), the paths \( P_1, \hdots , P_{k}, Q_1, \hdots , Q_{k} \) along with the arc \( a \) form \( k \) disjoint paths between \( S \) and \( T \). Note that no two paths $P_i$ and $Q_j$ can intersect as otherwise there is a path between $S$ and $T$ avoiding $C$. This completes the proof.
 \end{proof}
