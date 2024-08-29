@@ -19,7 +19,7 @@ Let \( e = (e_1, e_2) \) and \( f = (f_1, f_2) \) be two edges in \( G \). If th
 \end{proof}
 \noindent \textbf{Q5.} For any graph \( G \), \( \nu (G) \leq \tau (G) \leq 2 \nu (G) \).
 \begin{proof}
-We first show that \( \nu (G) \leq \tau (G) \). Given a maximal matching \( M \), let \( X \) be a set consisting of one end from each edge in \( M \). Then \( |X| = |M| \) and \( X \) is a vertex cover by the maximality of \( M \). Thus, \( \tau (G) \leq |X| = \nu (G) \).
+We first show that \( \nu (G) \leq \tau (G) \). Given a maximum matching \( M \) and a minimum vertex cover \( X \), note that every edge in \( M \) has an end in \( X \). Since no two edges in \( M \) share an end, it follows that \(\nu (G) = |M| \leq |X| = \tau (G) \).
 
 To show that \( \tau (G) \leq 2 \nu (G) \), let \( M \) be a maximal matching in \( G \). Let \( X \) be the set of ends of edges in \( M \). Then \( X \) is a vertex cover: if there was an edge \( e \in E \) with no ends in \( X \), then \( M \) is not maximal since \( M \cup \{ e \}  \) is a matching. Hence \( \tau (G) \leq |X| = 2 |M| \leq 2 \nu (G) \).
 \end{proof}
