@@ -37,3 +37,9 @@ We first claim that in \( D' \) there are \( k \) disjoint paths \( P_1, P_2, \h
 
 Since \( |C| = k \), the paths \( P_1, \hdots , P_{k}, Q_1, \hdots , Q_{k} \) along with the arc \( a \) form \( k \) disjoint paths between \( S \) and \( T \). Note that no two paths $P_i$ and $Q_j$ can intersect as otherwise there is a path between $S$ and $T$ avoiding $C$. This completes the proof.
 \end{proof}
+\noindent \textbf{Q24.} Prove that a subset \( A \subseteq V \) is an independent set if and only if \( V - A \) is a vertex cover. Deduce that \( \alpha (G) + \tau (G) = |V(G)| \). 
+\begin{proof}
+Fix an independent set \( A \) in \( G \) and write \( X = V - A \). If \( X \) is not a vertex cover, then there is an edge \( uv \in E \) with no end in \( X \), that is \( u, v \notin X \). But then \( u, v \in A \) is a contradiction, since \( u \) and \( v \) are adjacent vertices. On the other hand, let \( A \subseteq V \) be such that \( X = V - A \) is a vertex cover. If \( A \) is not independent, there are vertices \( u,v \in A \) with \( uv \in E \). But then \( uv \) has no end in \( X \), so \( X \) is not a vertex cover.
+
+Given a maximum independent set \( A \), the set \( X = V - A \) is a vertex cover. If there was anoter vertex cover \( Y \) with \( |Y| < |X| \), then \( Y = V - (V - Y) \) and so \( V - Y \) is an independent set. But then \( |V - Y| > |V - X| = |A| \) contradicts our choice of \( A \). Therefore, \( |X| = \tau (G) \) and so \( |A| + |X| = \alpha (G) + \tau (G) = |V| \). 
+\end{proof}
