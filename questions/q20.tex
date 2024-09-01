@@ -43,3 +43,9 @@ Fix an independent set \( A \) in \( G \) and write \( X = V - A \). If \( X \) 
 
 Given a maximum independent set \( A \), the set \( X = V - A \) is a vertex cover. If there was anoter vertex cover \( Y \) with \( |Y| < |X| \), then \( Y = V - (V - Y) \) and so \( V - Y \) is an independent set. But then \( |V - Y| > |V - X| = |A| \) contradicts our choice of \( A \). Therefore, \( |X| = \tau (G) \) and so \( |A| + |X| = \alpha (G) + \tau (G) = |V| \). 
 \end{proof}
+\noindent \textbf{Q25.} Let \( G \) be a graph with no isolated vertices. Show that \( \nu (G) + \rho (G) = |V| \). Deduce that \( \alpha (G) = \rho (G) \) whenever \( G \) is bipartite.
+\begin{proof}
+Let \( F \) be a minimal edge cover in \( G \). Let \( M \subseteq F \) be a maximum matching in \( F \) and denote the set of remaining edges by \( R = F - M \). It follows from the maximality of \( M \) in \( F \) that every edge in \( R \) has exactly one end matched by \( M \). Thus, there are \( 2|M| \) vertices in \( G \) which are matched by \( M \) and \( |R| \) vertices which are not. Since every vertex is incident to an edge in \( F = M \cup R \), we observe that \( |V| = 2|M| + |R| = |M| + |F| \).
+
+It remains to show that \( M \) is a maximum cardinality matching in \( G \). If not, there is an \( M \)-augmenting path \( P \) between two vertices \( x,y \in V \). For a vertex \( z \in \{ x,y \}  \), note that there is an edge \( e_{z} \in R \) containing \( z \) as an end, since this vertex is unmatched. But then \( M \triangle E(P) \cup R - \{ e_{x} , e_{y}  \}  \) is a smaller edge cover than \( F \), a contradiction.
+\end{proof}
